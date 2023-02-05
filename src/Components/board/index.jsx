@@ -1,6 +1,43 @@
 import React, { useState } from "react";
 import ButtonGrid from "../button-grid";
 
+const addNumbers = (b) => {
+  for (let i = 0; i < b.length; i++) {
+    for (let j = 0; j < b[i].length; j++) {
+      if (b[i][j] === 9) {
+        //Upper row
+        if (i > 0) {
+          if (j > 0) {
+            b[i - 1][j - 1] += b[i - 1][j - 1] === 9 ? 0 : 1;
+          }
+          b[i - 1][j] += b[i - 1][j] === 9 ? 0 : 1;
+          if (j < b[i].length - 1) {
+            b[i - 1][j + 1] += b[i - 1][j + 1] === 9 ? 0 : 1;
+          }
+        }
+        //Middle row (sides)
+        if (j > 0) {
+          b[i][j - 1] += b[i][j - 1] === 9 ? 0 : 1;
+        }
+        if (j < b[i].length - 1) {
+          b[i][j + 1] += b[i][j + 1] === 9 ? 0 : 1;
+        }
+        //Lower rows
+        if (i < b.length - 1) {
+          if (j > 0) {
+            b[i + 1][j - 1] += b[i + 1][j - 1] === 9 ? 0 : 1;
+          }
+          b[i + 1][j] += b[i + 1][j] === 9 ? 0 : 1;
+          if (j < b[i].length - 1) {
+            b[i + 1][j + 1] += b[i + 1][j + 1] === 9 ? 0 : 1;
+          }
+        }
+      }
+    }
+  }
+  return b;
+};
+
 const generateBoard = () => {
   let boardArray = new Array(10).fill(new Array(10).fill(0));
   const randomArray = Array.from(Array(100).keys());
@@ -24,7 +61,7 @@ const generateBoard = () => {
       counter += 1;
     }
   }
-  console.log(`board ${board}`);
+  board = addNumbers(board);
   return board;
 };
 

@@ -1,0 +1,8 @@
+.grid {
+  background-color: blue;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  max-width: 650px;
+  position: relative;
+}

@@ -1,0 +1,8 @@
+.btn {
+  cursor: pointer;
+  min-height: 10px;
+  position: relative;
+  color: black;
+  display: block;
+  height: 50px;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonGrid from "../button-grid";
 
 const addNumbers = (b) => {
@@ -50,10 +50,8 @@ const generateBoard = () => {
 
     mines.push(randomArray[rndm]);
     randomArray.splice(rndm, 1);
-    console.log(`randomarray length ${randomArray.length}`);
   }
-  console.log(boardArray);
-  console.log(`mines ${mines}`);
+  //   console.log(boardArray);
   for (let x = 0; x < boardArray.length; x++) {
     board.push([]);
     for (let y = 0; y < boardArray.length; y++) {
@@ -68,6 +66,10 @@ const generateBoard = () => {
 const Board = () => {
   const [board, setBoard] = useState(generateBoard());
 
+  useEffect(() => {
+    console.log("render nuevo");
+  }, []);
+
   const countMines = () => {
     let mineCounter = 0;
     board.map((row) => {
@@ -79,15 +81,14 @@ const Board = () => {
 
   return (
     <div style={{ textAlign: "-webkit-center" }}>
-      <div>{board}</div>
-      <button
+      {/* <div>{board}</div> */}
+      {/* <button
         onClick={() => {
           setBoard(generateBoard());
         }}
       >
         Restart
-      </button>
-      <div>{countMines()}</div>
+      </button> */}
       <ButtonGrid board={board} />
     </div>
   );

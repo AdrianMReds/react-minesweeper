@@ -1,9 +1,9 @@
 import React from "react";
 import "./btn.css";
-import { FaBomb, FaFontAwesomeFlag } from "react-icons/fa";
+import { FaBomb, FaFlag } from "react-icons/fa";
 import { useState } from "react";
 
-function Button({ value }) {
+function Button({ value, board, setBoard, modFlags }) {
   const [status, setStatus] = useState("b");
 
   const handleClick = (e) => {
@@ -11,6 +11,7 @@ function Button({ value }) {
       setStatus(status === "b" ? "u" : status === "f" ? "f" : "u");
     } else if (e.type === "contextmenu") {
       e.preventDefault();
+      modFlags(status === "b" ? "-" : status === "f" ? "+" : "");
       setStatus(status === "b" ? "f" : status === "f" ? "b" : "u");
     }
   };
@@ -20,7 +21,7 @@ function Button({ value }) {
       {status === "b" ? (
         "."
       ) : status === "f" ? (
-        <FaFontAwesomeFlag />
+        <FaFlag />
       ) : value === 9 ? (
         <FaBomb />
       ) : (

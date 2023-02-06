@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ButtonGrid from "../button-grid";
+import { FaFlag } from "react-icons/fa";
 
 const addNumbers = (b) => {
   for (let i = 0; i < b.length; i++) {
@@ -65,10 +66,23 @@ const generateBoard = () => {
 
 const Board = () => {
   const [board, setBoard] = useState(generateBoard());
+  // 0: Game Over
+  // 1: Playing
+  // 2: Won
+  const [game, setGame] = useState(1);
+  const [flags, setFlags] = useState(10);
+
+  const modifyFlags = (type) => {
+    setFlags((prevFlags) =>
+      type === "+" ? prevFlags + 1 : type === "-" ? prevFlags - 1 : prevFlags
+    );
+  };
 
   useEffect(() => {
     console.log("render nuevo");
   }, []);
+
+  const handleAction = () => {};
 
   const countMines = () => {
     let mineCounter = 0;
@@ -81,6 +95,9 @@ const Board = () => {
 
   return (
     <div style={{ textAlign: "-webkit-center" }}>
+      <h2>
+        <FaFlag /> Flags: {flags}
+      </h2>
       {/* <div>{board}</div> */}
       {/* <button
         onClick={() => {
@@ -89,7 +106,7 @@ const Board = () => {
       >
         Restart
       </button> */}
-      <ButtonGrid board={board} />
+      <ButtonGrid board={board} setBoard={setBoard} modFlags={modifyFlags} />
     </div>
   );
 };

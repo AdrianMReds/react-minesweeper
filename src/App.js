@@ -6,6 +6,16 @@ function App() {
     <div className="App">
       <h1>Minesweeper</h1>
       <Board />
+      <footer>
+        This game was developed by{" "}
+        <a
+          href="https://github.com/AdrianMReds"
+          style={{ textDecoration: "none" }}
+          target="_blank"
+        >
+          @AdrianMReds
+        </a>
+      </footer>
     </div>
   );
 }

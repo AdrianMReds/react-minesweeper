@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ButtonGrid from "../button-grid";
 import { FaFlag } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const addNumbers = (b) => {
   for (let i = 0; i < b.length; i++) {
@@ -65,11 +66,9 @@ const generateBoard = () => {
 };
 
 const Board = () => {
-  const [board, setBoard] = useState(generateBoard());
-  // 0: Game Over
-  // 1: Playing
-  // 2: Won
-  const [game, setGame] = useState(1);
+  const board = useSelector((state) => state.board.value);
+  // const [board, setBoard] = useState(generateBoard());
+  const [reRender, setReRender] = useState(true);
   const [flags, setFlags] = useState(10);
 
   const modifyFlags = (type) => {
@@ -78,11 +77,27 @@ const Board = () => {
     );
   };
 
+  const rerender = () => {
+    setReRender(reRender ? false : true);
+  };
+
   useEffect(() => {
+    // console.log(`board: ${JSON.stringify(board)}`);
+    console.log(`rerender: ${reRender}`);
     console.log("render nuevo");
   }, []);
 
-  const handleAction = () => {};
+  useEffect(() => {
+    console.log(`Flags changed: ${flags}`);
+  }, [flags]);
+
+  useEffect(() => {
+    console.log(`ReRender: ${reRender}`);
+  }, [reRender]);
+
+  useEffect(() => {
+    console.log(`Cambió board`);
+  }, [board]);
 
   const countMines = () => {
     let mineCounter = 0;
@@ -106,7 +121,7 @@ const Board = () => {
       >
         Restart
       </button> */}
-      <ButtonGrid board={board} setBoard={setBoard} modFlags={modifyFlags} />
+      <ButtonGrid board={board} modFlags={modifyFlags} setRender={rerender} />
     </div>
   );
 };

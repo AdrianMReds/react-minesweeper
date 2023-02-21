@@ -4,7 +4,6 @@ import App from "./App";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import boardReducer from "./Features/board";
-import board from "./Features/board";
 
 const store = configureStore({
   reducer: {

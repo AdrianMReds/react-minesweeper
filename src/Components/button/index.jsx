@@ -10,7 +10,7 @@ function Button({ bt, modFlags, setRender }) {
   const board = useSelector((state) => state.board.value);
   let bx = bt.coords.x;
   let by = bt.coords.y;
-  const [stat, setStatus] = useState(board[bx][by].status);
+  let stat = board[bx][by].status;
 
   const dispatch = useDispatch();
 

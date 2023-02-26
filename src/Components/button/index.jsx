@@ -35,7 +35,6 @@ function Button({ bt, modFlags, setRender }) {
         });
       }
     });
-    // console.log(`brd: ${JSON.stringify(brd)}`);
     return brd;
   };
 
@@ -53,7 +52,6 @@ function Button({ bt, modFlags, setRender }) {
           })
         )
       );
-      // setStatus(status === "b" ? "u" : status === "f" ? "f" : "u");
     } else if (e.type === "contextmenu") {
       e.preventDefault();
       const b = [...board];
@@ -67,9 +65,7 @@ function Button({ bt, modFlags, setRender }) {
         )
       );
       modFlags(stat === "b" ? "-" : stat === "f" ? "+" : "");
-      // setStatus(stat === "b" ? "f" : stat === "f" ? "b" : "u");
     }
-    setRender();
   };
 
   return (

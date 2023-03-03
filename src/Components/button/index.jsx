@@ -40,6 +40,28 @@ function Button({ bt, modFlags, setRender }) {
 
   const nearbyTiles = (b, x, y) => {
     const tiles = [];
+    // let tileLeft, tileRight, tileBottom, tileUp;
+    // //Izquierda
+    // tileLeft = b[x - 1]?.[y];
+    // if (tileLeft && tileLeft.status === "b") {
+    //   tiles.push(tileLeft);
+    // }
+    // //Derecha
+    // tileRight = b[x + 1]?.[y];
+    // if (tileRight && tileRight.status === "b") {
+    //   tiles.push(tileRight);
+    // }
+    // //Abajo
+    // tileBottom = b[x]?.[y + 1];
+    // if (tileBottom && tileBottom.status === "b") {
+    //   tiles.push(tileBottom);
+    // }
+    // //Arriba
+    // tileUp = b[x]?.[y - 1];
+    // if (tileUp && tileUp.status === "b") {
+    //   tiles.push(tileUp);
+    // }
+
     for (let xOffset = -1; xOffset <= 1; xOffset++) {
       for (let yOffset = -1; yOffset <= 1; yOffset++) {
         const tile = b[x + xOffset]?.[y + yOffset];
@@ -62,7 +84,7 @@ function Button({ bt, modFlags, setRender }) {
     const adjacentTiles = nearbyTiles(b, x, y);
     const mines = adjacentTiles.filter((t) => t.value === 9);
     console.log(`Cuantas minas alrededor: ${mines.length}`);
-    if (mines.length === 0) {
+    if (b[x][y].value === 0) {
       if (b[x][y].status !== "u") {
         b = updateObjectInArray(b, {
           x: x,
@@ -121,15 +143,23 @@ function Button({ bt, modFlags, setRender }) {
   };
 
   return (
-    <button className="btn" onClick={handleClick} onContextMenu={handleClick}>
+    <button
+      className="btn"
+      onClick={handleClick}
+      onContextMenu={handleClick}
+      disabled={stat === "u" ? true : false}
+      style={{ cursor: stat === "u" ? "auto" : "pointer" }}
+    >
       {stat === "b" ? (
         "."
       ) : stat === "f" ? (
         <FaFlag />
       ) : bt.value === 9 ? (
         <FaBomb />
-      ) : (
+      ) : bt.value !== 0 ? (
         bt.value
+      ) : (
+        "."
       )}
     </button>
   );

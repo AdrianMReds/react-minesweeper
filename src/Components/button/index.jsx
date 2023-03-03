@@ -43,38 +43,40 @@ function Button({ bt, modFlags, setRender }) {
     for (let xOffset = -1; xOffset <= 1; xOffset++) {
       for (let yOffset = -1; yOffset <= 1; yOffset++) {
         const tile = b[x + xOffset]?.[y + yOffset];
-        if (tile) {
+        if (
+          tile &&
+          tile.status === "b" &&
+          (tile.coords.x !== x || tile.coords.y !== y)
+        ) {
           tiles.push(tile);
         }
       }
     }
-    console.log(`Number of nearby tiles: ${tiles.length - 1}`);
+    console.log(`Number of nearby tiles: ${tiles.length}`);
     console.log(`Nearby tiles: ${JSON.stringify(tiles)}`);
     return tiles;
   };
 
-  const revealTile = (x, y) => {
-    let b = [...board];
-    // dispatch(
-    //   updateBoard(
-    //     updateObjectInArray(b, {
-    //       x: x,
-    //       y: y,
-    //       st: stat === "b" ? "u" : stat === "f" ? "f" : "u",
-    //     })
-    //   )
-    // );
+  const revealTile = (b, x, y) => {
+    // let b = [...board];
     const adjacentTiles = nearbyTiles(b, x, y);
     const mines = adjacentTiles.filter((t) => t.value === 9);
     console.log(`Cuantas minas alrededor: ${mines.length}`);
     if (mines.length === 0) {
-      // adjacentTiles.forEach(revealTile.bind(null, b));
+      if (b[x][y].status !== "u") {
+        b = updateObjectInArray(b, {
+          x: x,
+          y: y,
+          st: "u",
+        });
+      }
       for (let i = 0; i < adjacentTiles.length; i++) {
         b = updateObjectInArray(b, {
           x: adjacentTiles[i].coords.x,
           y: adjacentTiles[i].coords.y,
           st: adjacentTiles[i].status === "b" ? "u" : stat === "f" ? "f" : "u",
         });
+        b = revealTile(b, adjacentTiles[i].coords.x, adjacentTiles[i].coords.y);
       }
     } else {
       b = updateObjectInArray(b, {
@@ -83,8 +85,10 @@ function Button({ bt, modFlags, setRender }) {
         st: b[x][y].status === "b" ? "u" : stat === "f" ? "f" : "u",
       });
     }
-    dispatch(updateBoard(b));
+    return b;
   };
+
+  const spreadTiles = (x, y) => {};
 
   const flagTile = (x, y) => {
     const b = [...board];
@@ -103,9 +107,13 @@ function Button({ bt, modFlags, setRender }) {
   const handleClick = (e) => {
     const x = bt.coords.x;
     const y = bt.coords.y;
+    const b = [...board];
+    let brd;
 
     if (e.type === "click") {
-      revealTile(x, y);
+      //Crear una función "Spread tiles" que llame recursivamente a revealTile y llamarla aquí en vez de a reveal tile
+      brd = revealTile(b, x, y);
+      dispatch(updateBoard(brd));
     } else if (e.type === "contextmenu") {
       e.preventDefault();
       flagTile(x, y);

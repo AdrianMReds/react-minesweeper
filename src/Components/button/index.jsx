@@ -54,21 +54,36 @@ function Button({ bt, modFlags, setRender }) {
   };
 
   const revealTile = (x, y) => {
-    const b = [...board];
-    dispatch(
-      updateBoard(
-        updateObjectInArray(b, {
-          x: x,
-          y: y,
-          st: stat === "b" ? "u" : stat === "f" ? "f" : "u",
-        })
-      )
-    );
+    let b = [...board];
+    // dispatch(
+    //   updateBoard(
+    //     updateObjectInArray(b, {
+    //       x: x,
+    //       y: y,
+    //       st: stat === "b" ? "u" : stat === "f" ? "f" : "u",
+    //     })
+    //   )
+    // );
     const adjacentTiles = nearbyTiles(b, x, y);
     const mines = adjacentTiles.filter((t) => t.value === 9);
     console.log(`Cuantas minas alrededor: ${mines.length}`);
     if (mines.length === 0) {
+      // adjacentTiles.forEach(revealTile.bind(null, b));
+      for (let i = 0; i < adjacentTiles.length; i++) {
+        b = updateObjectInArray(b, {
+          x: adjacentTiles[i].coords.x,
+          y: adjacentTiles[i].coords.y,
+          st: adjacentTiles[i].status === "b" ? "u" : stat === "f" ? "f" : "u",
+        });
+      }
+    } else {
+      b = updateObjectInArray(b, {
+        x: x,
+        y: y,
+        st: b[x][y].status === "b" ? "u" : stat === "f" ? "f" : "u",
+      });
     }
+    dispatch(updateBoard(b));
   };
 
   const flagTile = (x, y) => {

@@ -38,33 +38,62 @@ function Button({ bt, modFlags, setRender }) {
     return brd;
   };
 
+  const nearbyTiles = (b, x, y) => {
+    const tiles = [];
+    for (let xOffset = -1; xOffset <= 1; xOffset++) {
+      for (let yOffset = -1; yOffset <= 1; yOffset++) {
+        const tile = b[x + xOffset]?.[y + yOffset];
+        if (tile) {
+          tiles.push(tile);
+        }
+      }
+    }
+    console.log(`Number of nearby tiles: ${tiles.length - 1}`);
+    console.log(`Nearby tiles: ${JSON.stringify(tiles)}`);
+    return tiles;
+  };
+
+  const revealTile = (x, y) => {
+    const b = [...board];
+    dispatch(
+      updateBoard(
+        updateObjectInArray(b, {
+          x: x,
+          y: y,
+          st: stat === "b" ? "u" : stat === "f" ? "f" : "u",
+        })
+      )
+    );
+    const adjacentTiles = nearbyTiles(b, x, y);
+    const mines = adjacentTiles.filter((t) => t.value === 9);
+    console.log(`Cuantas minas alrededor: ${mines.length}`);
+    if (mines.length === 0) {
+    }
+  };
+
+  const flagTile = (x, y) => {
+    const b = [...board];
+    dispatch(
+      updateBoard(
+        updateObjectInArray(b, {
+          x: x,
+          y: y,
+          st: stat === "b" ? "f" : stat === "f" ? "b" : "u",
+        })
+      )
+    );
+    modFlags(stat === "b" ? "-" : stat === "f" ? "+" : "");
+  };
+
   const handleClick = (e) => {
     const x = bt.coords.x;
     const y = bt.coords.y;
+
     if (e.type === "click") {
-      const b = [...board];
-      dispatch(
-        updateBoard(
-          updateObjectInArray(b, {
-            x: x,
-            y: y,
-            st: stat === "b" ? "u" : stat === "f" ? "f" : "u",
-          })
-        )
-      );
+      revealTile(x, y);
     } else if (e.type === "contextmenu") {
       e.preventDefault();
-      const b = [...board];
-      dispatch(
-        updateBoard(
-          updateObjectInArray(b, {
-            x: x,
-            y: y,
-            st: stat === "b" ? "f" : stat === "f" ? "b" : "u",
-          })
-        )
-      );
-      modFlags(stat === "b" ? "-" : stat === "f" ? "+" : "");
+      flagTile(x, y);
     }
   };
 

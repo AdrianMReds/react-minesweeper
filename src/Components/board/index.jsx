@@ -16,7 +16,7 @@ const Board = () => {
   };
 
   useEffect(() => {
-    console.log(`board: ${JSON.stringify(board)}`);
+    // console.log(`board: ${JSON.stringify(board)}`);
     console.log(`Cambió board`);
   }, [board]);
 

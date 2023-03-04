@@ -5,9 +5,13 @@ import { useSelector } from "react-redux";
 
 const Board = () => {
   const board = useSelector((state) => state.board.value);
-  // const [board, setBoard] = useState(generateBoard());
-  const [reRender, setReRender] = useState(true);
   const [flags, setFlags] = useState(10);
+  const [lostGame, setLostGame] = useState(false);
+
+  useEffect(() => {
+    console.log("Cambió lostGame");
+    console.log(lostGame);
+  }, [lostGame]);
 
   const modifyFlags = (type) => {
     setFlags((prevFlags) =>
@@ -15,34 +19,29 @@ const Board = () => {
     );
   };
 
-  useEffect(() => {
-    // console.log(`board: ${JSON.stringify(board)}`);
-    console.log(`Cambió board`);
-  }, [board]);
-
-  // const countMines = () => {
-  //   let mineCounter = 0;
-  //   board.map((row) => {
-  //     let num = row.filter((x) => x === 9).length;
-  //     mineCounter += num;
-  //   });
-  //   return mineCounter;
-  // };
-
   return (
-    <div style={{ textAlign: "-webkit-center" }}>
-      <h2>
-        <FaFlag /> Flags: {flags}
-      </h2>
-      {/* <div>{board}</div> */}
-      {/* <button
+    <div>
+      {!lostGame ? (
+        <div style={{ textAlign: "-webkit-center" }}>
+          <h2>
+            <FaFlag /> Flags: {flags}
+          </h2>
+          {/* <button
         onClick={() => {
           setBoard(generateBoard());
         }}
       >
         Restart
       </button> */}
-      <ButtonGrid board={board} modFlags={modifyFlags} />
+          <ButtonGrid
+            board={board}
+            modFlags={modifyFlags}
+            setLost={setLostGame}
+          />
+        </div>
+      ) : (
+        <div>Game over</div>
+      )}
     </div>
   );
 };

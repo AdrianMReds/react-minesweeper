@@ -6,7 +6,7 @@ import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-function Button({ bt, modFlags, setRender }) {
+function Button({ bt, modFlags, setLost }) {
   const board = useSelector((state) => state.board.value);
   let bx = bt.coords.x;
   let by = bt.coords.y;
@@ -110,8 +110,6 @@ function Button({ bt, modFlags, setRender }) {
     return b;
   };
 
-  const spreadTiles = (x, y) => {};
-
   const flagTile = (x, y) => {
     const b = [...board];
     dispatch(
@@ -133,7 +131,16 @@ function Button({ bt, modFlags, setRender }) {
     let brd;
 
     if (e.type === "click") {
-      //Crear una función "Spread tiles" que llame recursivamente a revealTile y llamarla aquí en vez de a reveal tile
+      if (b[x][y].value === 9) {
+        brd = updateObjectInArray(b, {
+          x: x,
+          y: y,
+          st: "u",
+        });
+        dispatch(updateBoard(brd));
+        setLost(true);
+        return;
+      }
       brd = revealTile(b, x, y);
       dispatch(updateBoard(brd));
     } else if (e.type === "contextmenu") {

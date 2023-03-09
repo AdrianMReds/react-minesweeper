@@ -10,6 +10,7 @@ const Board = () => {
   const board = useSelector((state) => state.board.value);
   const [flags, setFlags] = useState(10);
   const [lostGame, setLostGame] = useState(false);
+  const [wonGame, setWonGame] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -26,7 +27,7 @@ const Board = () => {
 
   return (
     <div>
-      {!lostGame ? (
+      {!lostGame && !wonGame ? (
         <div style={{ textAlign: "-webkit-center" }}>
           <h2>
             <FaFlag /> Flags: {flags}
@@ -35,14 +36,16 @@ const Board = () => {
             board={board}
             modFlags={modifyFlags}
             setLost={setLostGame}
+            setWon={setWonGame}
           />
         </div>
-      ) : (
+      ) : lostGame ? (
         <div style={{ textAlign: "-webkit-center" }}>
           <button
             onClick={() => {
               dispatch(updateBoard(generateBoard()));
               setLostGame(false);
+              setWonGame(false);
               setFlags(10);
             }}
           >
@@ -54,6 +57,29 @@ const Board = () => {
               board={board}
               modFlags={modifyFlags}
               setLost={setLostGame}
+              setWon={setWonGame}
+            />
+          </div>
+        </div>
+      ) : (
+        <div style={{ textAlign: "-webkit-center" }}>
+          <button
+            onClick={() => {
+              dispatch(updateBoard(generateBoard()));
+              setLostGame(false);
+              setWonGame(false);
+              setFlags(10);
+            }}
+          >
+            New Game
+          </button>
+          <div style={{ pointerEvents: "none" }}>
+            <h1>GANASTE</h1>
+            <ButtonGrid
+              board={board}
+              modFlags={modifyFlags}
+              setLost={setLostGame}
+              setWon={setWonGame}
             />
           </div>
         </div>

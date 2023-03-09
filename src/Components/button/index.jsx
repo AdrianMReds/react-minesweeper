@@ -6,7 +6,7 @@ import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const Button = ({ bt, modFlags, setLost }) => {
+const Button = ({ bt, modFlags, setLost, setWon }) => {
   const board = useSelector((state) => state.board.value);
   let bx = bt.coords.x;
   let by = bt.coords.y;
@@ -46,6 +46,32 @@ const Button = ({ bt, modFlags, setLost }) => {
             x: x,
             y: y,
             st: "u",
+          });
+        }
+      }
+    }
+    return b;
+  };
+
+  const wonAlready = (b) => {
+    for (let x = 0; x < b.length; x++) {
+      for (let y = 0; y < b[x].length; y++) {
+        if (b[x][y].value !== 9 && b[x][y].status === "b") {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  const flagRemaining = (b) => {
+    for (let x = 0; x < b.length; x++) {
+      for (let y = 0; y < b[x].length; y++) {
+        if (b[x][y].status === "b") {
+          b = updateObjectInArray(b, {
+            x: x,
+            y: y,
+            st: "f",
           });
         }
       }
@@ -127,17 +153,18 @@ const Button = ({ bt, modFlags, setLost }) => {
       if (b[x][y].status === "f") {
         return;
       } else if (b[x][y].value === 9) {
-        // brd = updateObjectInArray(b, {
-        //   x: x,
-        //   y: y,
-        //   st: "u",
-        // });
         brd = revealAllMines(b);
         dispatch(updateBoard(brd));
         setLost(true);
         return;
       }
       brd = revealTile(b, x, y);
+      if (wonAlready(brd)) {
+        brd = flagRemaining(brd);
+        dispatch(updateBoard(brd));
+        setWon(true);
+        return;
+      }
       dispatch(updateBoard(brd));
     } else if (e.type === "contextmenu") {
       e.preventDefault();

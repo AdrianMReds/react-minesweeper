@@ -6,7 +6,7 @@ import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-function Button({ bt, modFlags, setLost }) {
+const Button = ({ bt, modFlags, setLost }) => {
   const board = useSelector((state) => state.board.value);
   let bx = bt.coords.x;
   let by = bt.coords.y;
@@ -38,30 +38,23 @@ function Button({ bt, modFlags, setLost }) {
     return brd;
   };
 
+  const revealAllMines = (b) => {
+    for (let x = 0; x < b.length; x++) {
+      for (let y = 0; y < b[x].length; y++) {
+        if (b[x][y].value === 9) {
+          b = updateObjectInArray(b, {
+            x: x,
+            y: y,
+            st: "u",
+          });
+        }
+      }
+    }
+    return b;
+  };
+
   const nearbyTiles = (b, x, y) => {
     const tiles = [];
-    // let tileLeft, tileRight, tileBottom, tileUp;
-    // //Izquierda
-    // tileLeft = b[x - 1]?.[y];
-    // if (tileLeft && tileLeft.status === "b") {
-    //   tiles.push(tileLeft);
-    // }
-    // //Derecha
-    // tileRight = b[x + 1]?.[y];
-    // if (tileRight && tileRight.status === "b") {
-    //   tiles.push(tileRight);
-    // }
-    // //Abajo
-    // tileBottom = b[x]?.[y + 1];
-    // if (tileBottom && tileBottom.status === "b") {
-    //   tiles.push(tileBottom);
-    // }
-    // //Arriba
-    // tileUp = b[x]?.[y - 1];
-    // if (tileUp && tileUp.status === "b") {
-    //   tiles.push(tileUp);
-    // }
-
     for (let xOffset = -1; xOffset <= 1; xOffset++) {
       for (let yOffset = -1; yOffset <= 1; yOffset++) {
         const tile = b[x + xOffset]?.[y + yOffset];
@@ -134,11 +127,12 @@ function Button({ bt, modFlags, setLost }) {
       if (b[x][y].status === "f") {
         return;
       } else if (b[x][y].value === 9) {
-        brd = updateObjectInArray(b, {
-          x: x,
-          y: y,
-          st: "u",
-        });
+        // brd = updateObjectInArray(b, {
+        //   x: x,
+        //   y: y,
+        //   st: "u",
+        // });
+        brd = revealAllMines(b);
         dispatch(updateBoard(brd));
         setLost(true);
         return;
@@ -164,7 +158,7 @@ function Button({ bt, modFlags, setLost }) {
       ) : stat === "f" ? (
         <FaFlag />
       ) : bt.value === 9 ? (
-        <FaBomb />
+        <FaBomb color="white" />
       ) : bt.value !== 0 ? (
         bt.value
       ) : (
@@ -172,6 +166,6 @@ function Button({ bt, modFlags, setLost }) {
       )}
     </button>
   );
-}
+};
 
 export default Button;

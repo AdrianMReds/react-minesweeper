@@ -2,11 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import ButtonGrid from "../button-grid";
 import { FaFlag } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateBoard } from "../../Features/board";
+import generateBoard from "../helper";
 
 const Board = () => {
   const board = useSelector((state) => state.board.value);
   const [flags, setFlags] = useState(10);
   const [lostGame, setLostGame] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log("Cambió lostGame");
@@ -26,13 +31,6 @@ const Board = () => {
           <h2>
             <FaFlag /> Flags: {flags}
           </h2>
-          {/* <button
-        onClick={() => {
-          setBoard(generateBoard());
-        }}
-      >
-        Restart
-      </button> */}
           <ButtonGrid
             board={board}
             modFlags={modifyFlags}
@@ -40,7 +38,25 @@ const Board = () => {
           />
         </div>
       ) : (
-        <div>Game over</div>
+        <div style={{ textAlign: "-webkit-center" }}>
+          <button
+            onClick={() => {
+              dispatch(updateBoard(generateBoard()));
+              setLostGame(false);
+              setFlags(10);
+            }}
+          >
+            Restart
+          </button>
+          <div style={{ pointerEvents: "none" }}>
+            <h1>GAME OVER</h1>
+            <ButtonGrid
+              board={board}
+              modFlags={modifyFlags}
+              setLost={setLostGame}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

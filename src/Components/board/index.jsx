@@ -7,7 +7,8 @@ import { updateBoard } from "../../Features/board";
 import generateBoard from "../helper";
 
 const Board = () => {
-  const board = useSelector((state) => state.board.value);
+  const board = useSelector((state) => state.board.value.board);
+  const difficulty = useSelector((state) => state.board.value.difficulty);
   const [flags, setFlags] = useState(10);
   const [lostGame, setLostGame] = useState(false);
   const [wonGame, setWonGame] = useState(false);

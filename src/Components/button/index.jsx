@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const Button = ({ bt, modFlags, setLost, setWon }) => {
-  const board = useSelector((state) => state.board.value);
+  const board = useSelector((state) => state.board.value.board);
   let bx = bt.coords.x;
   let by = bt.coords.y;
   let stat = board[bx][by].status;

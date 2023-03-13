@@ -3,14 +3,17 @@ import generateBoard from "../Components/helper";
 
 export const boardSlice = createSlice({
   name: "board",
-  initialState: { value: generateBoard() },
+  initialState: { value: { board: generateBoard(), difficulty: "facil" } },
   reducers: {
     updateBoard: (state, action) => {
-      state.value = action.payload;
+      state.value.board = action.payload;
+    },
+    updateDifficulty: (state, action) => {
+      state.value.difficulty = action.payload;
     },
   },
 });
 
-export const { updateBoard } = boardSlice.actions;
+export const { updateBoard, updateDifficulty } = boardSlice.actions;
 
 export default boardSlice.reducer;

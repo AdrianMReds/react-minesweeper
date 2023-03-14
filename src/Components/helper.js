@@ -1,3 +1,9 @@
+export const sizes = {
+  facil: { columns: 10, mines: 12 },
+  medio: { columns: 15, mines: 40 },
+  dificil: { columns: 20, mines: 75 },
+};
+
 const addNumbers = (b) => {
   for (let i = 0; i < b.length; i++) {
     for (let j = 0; j < b[i].length; j++) {
@@ -35,22 +41,23 @@ const addNumbers = (b) => {
   return b;
 };
 
-const generateBoard = () => {
-  let boardArray = new Array(10).fill(new Array(10).fill());
+const generateBoard = (diff) => {
+  let boardArray = new Array(sizes[diff].columns).fill(
+    new Array(sizes[diff].columns).fill()
+  );
 
-  const randomArray = Array.from(Array(100).keys());
+  const randomArray = Array.from(Array(sizes[diff].columns ** 2).keys());
 
   let counter = 0;
   let board = [];
   let mines = [];
   //Generate mine locations
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < sizes[diff].mines; i++) {
     let rndm = Math.floor(Math.random() * randomArray.length);
 
     mines.push(randomArray[rndm]);
     randomArray.splice(rndm, 1);
   }
-  //   console.log(boardArray);
   //Board generation
   for (let x = 0; x < boardArray.length; x++) {
     board.push([]);

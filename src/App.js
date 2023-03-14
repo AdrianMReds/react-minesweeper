@@ -9,7 +9,7 @@ const App = () => {
   const [settingsModalOpen, setSettingsModalOpen] = useState(false);
   return (
     <div className="App">
-      <h1>Minesweeper</h1>
+      <h1 style={{ margin: 0 }}>Minesweeper</h1>
       <Button
         icon={<SettingOutlined />}
         shape="circle"

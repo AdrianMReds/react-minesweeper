@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { updateBoard } from "../../Features/board";
 import generateBoard from "../helper";
+import { sizes } from "../helper";
 
 const Board = () => {
   const board = useSelector((state) => state.board.value.board);
@@ -16,9 +17,8 @@ const Board = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Cambió lostGame");
-    console.log(lostGame);
-  }, [lostGame]);
+    setFlags(sizes[difficulty].mines);
+  }, [difficulty]);
 
   const modifyFlags = (type) => {
     setFlags((prevFlags) =>
@@ -44,10 +44,10 @@ const Board = () => {
         <div style={{ textAlign: "-webkit-center" }}>
           <button
             onClick={() => {
-              dispatch(updateBoard(generateBoard()));
+              dispatch(updateBoard(generateBoard(difficulty)));
               setLostGame(false);
               setWonGame(false);
-              setFlags(10);
+              setFlags(sizes[difficulty].mines);
             }}
           >
             Restart
@@ -66,10 +66,10 @@ const Board = () => {
         <div style={{ textAlign: "-webkit-center" }}>
           <button
             onClick={() => {
-              dispatch(updateBoard(generateBoard()));
+              dispatch(updateBoard(generateBoard(difficulty)));
               setLostGame(false);
               setWonGame(false);
-              setFlags(10);
+              setFlags(sizes[difficulty].mines);
             }}
           >
             New Game

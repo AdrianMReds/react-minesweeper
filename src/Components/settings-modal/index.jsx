@@ -1,13 +1,16 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import { useState, useEffect } from "react";
-import { updateDifficulty } from "../../Features/board";
+import { updateBoard, updateDifficulty } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import generateBoard from "../helper";
+import { sizes } from "../helper";
 
 const SettingsModal = ({ modalOpen, setModalOpen }) => {
   const difficulty = useSelector((state) => state.board.value.difficulty);
   const [tempDiff, setTempDiff] = useState(difficulty);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (modalOpen) {
@@ -16,15 +19,15 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
   }, [modalOpen]);
 
   const handleOk = () => {
-    dispatch(updateDifficulty(tempDiff));
     setModalOpen(false);
+    dispatch(updateDifficulty(tempDiff));
+    dispatch(updateBoard(generateBoard(tempDiff)));
   };
 
   const handleCancel = () => {
     setModalOpen(false);
   };
 
-  const dispatch = useDispatch();
   return (
     <Modal
       open={modalOpen}

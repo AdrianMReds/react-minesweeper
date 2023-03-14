@@ -1,10 +1,23 @@
 import React from "react";
-import "./styles.css";
 import Button from "../button";
+import { useSelector } from "react-redux";
+import { sizes } from "../helper";
 
 const ButtonGrid = ({ board, modFlags, setLost, setWon }) => {
+  const difficulty = useSelector((state) => state.board.value.difficulty);
+
+  const style = {
+    backgroundColor: "lightgray",
+    width: 550,
+    height: 550,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    margin: "20px auto",
+  };
+
   return (
-    <div className="grid">
+    <div style={style}>
       {board.map((row) => {
         return row.map((bt) => {
           return (
@@ -13,6 +26,8 @@ const ButtonGrid = ({ board, modFlags, setLost, setWon }) => {
               modFlags={modFlags}
               setLost={setLost}
               setWon={setWon}
+              btWidth={style.width / sizes[difficulty].columns}
+              btHeight={style.height / sizes[difficulty].columns}
             />
           );
         });

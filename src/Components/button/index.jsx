@@ -6,7 +6,7 @@ import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const Button = ({ bt, modFlags, setLost, setWon }) => {
+const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
   const board = useSelector((state) => state.board.value.board);
   let bx = bt.coords.x;
   let by = bt.coords.y;
@@ -178,14 +178,18 @@ const Button = ({ bt, modFlags, setLost, setWon }) => {
       onClick={handleClick}
       onContextMenu={handleClick}
       disabled={stat === "u" ? true : false}
-      style={{ cursor: stat === "u" ? "auto" : "pointer" }}
+      style={{
+        cursor: stat === "u" ? "auto" : "pointer",
+        width: btWidth,
+        height: btHeight,
+      }}
     >
       {stat === "b" ? (
         "."
       ) : stat === "f" ? (
         <FaFlag />
       ) : bt.value === 9 ? (
-        <FaBomb color="white" />
+        <FaBomb color="black" />
       ) : bt.value !== 0 ? (
         bt.value
       ) : (

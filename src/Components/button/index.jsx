@@ -5,8 +5,17 @@ import { useState } from "react";
 import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { getIcon } from "../helper";
 
-const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
+const Button = ({
+  bt,
+  modFlags,
+  setLost,
+  setWon,
+  btWidth,
+  btHeight,
+  numValues,
+}) => {
   const board = useSelector((state) => state.board.value.board);
   let bx = bt.coords.x;
   let by = bt.coords.y;
@@ -24,9 +33,9 @@ const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
           if (i !== action.y) {
             return btn;
           } else {
-            console.log(
-              `boton [${action.x}][${action.y}]: ${JSON.stringify(btn)}`
-            );
+            // console.log(
+            //   `boton [${action.x}][${action.y}]: ${JSON.stringify(btn)}`
+            // );
             return {
               ...btn,
               status: action.st,
@@ -93,8 +102,8 @@ const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
         }
       }
     }
-    console.log(`Number of nearby tiles: ${tiles.length}`);
-    console.log(`Nearby tiles: ${JSON.stringify(tiles)}`);
+    // console.log(`Number of nearby tiles: ${tiles.length}`);
+    // console.log(`Nearby tiles: ${JSON.stringify(tiles)}`);
     return tiles;
   };
 
@@ -102,7 +111,7 @@ const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
     // let b = [...board];
     const adjacentTiles = nearbyTiles(b, x, y);
     const mines = adjacentTiles.filter((t) => t.value === 9);
-    console.log(`Cuantas minas alrededor: ${mines.length}`);
+    // console.log(`Cuantas minas alrededor: ${mines.length}`);
     if (b[x][y].value === 0) {
       if (b[x][y].status !== "u") {
         b = updateObjectInArray(b, {
@@ -182,7 +191,11 @@ const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
         cursor: stat === "u" ? "auto" : "pointer",
         width: btWidth,
         height: btHeight,
+        alignItems: "center",
       }}
+      title={
+        bt.status === "u" ? numValues?.[bt.value]?.["displayName"] : undefined
+      }
     >
       {stat === "b" ? (
         "."
@@ -191,7 +204,15 @@ const Button = ({ bt, modFlags, setLost, setWon, btWidth, btHeight }) => {
       ) : bt.value === 9 ? (
         <FaBomb color="black" />
       ) : bt.value !== 0 ? (
-        bt.value
+        numValues[bt.value] !== null ? (
+          <img
+            src={getIcon(numValues[bt.value].name)}
+            width={btWidth - 10}
+            height={btHeight - 10}
+          />
+        ) : (
+          bt.value
+        )
       ) : (
         "."
       )}

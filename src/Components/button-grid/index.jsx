@@ -3,7 +3,7 @@ import Button from "../button";
 import { useSelector } from "react-redux";
 import { sizes } from "../helper";
 
-const ButtonGrid = ({ board, modFlags, setLost, setWon }) => {
+const ButtonGrid = ({ board, modFlags, setLost, setWon, numValues }) => {
   const difficulty = useSelector((state) => state.board.value.difficulty);
 
   const style = {
@@ -28,6 +28,7 @@ const ButtonGrid = ({ board, modFlags, setLost, setWon }) => {
               setWon={setWon}
               btWidth={style.width / sizes[difficulty].columns}
               btHeight={style.height / sizes[difficulty].columns}
+              numValues={numValues}
             />
           );
         });

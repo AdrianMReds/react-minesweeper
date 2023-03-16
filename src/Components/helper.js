@@ -1,3 +1,83 @@
+export const getIcon = (name) => {
+  let i;
+  switch (name) {
+    case "milan":
+      i = "https://assets-sports.thescore.com/soccer/team/8/logo.png";
+      break;
+    case "liverpool":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738663.png";
+      break;
+    case "bayern":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738658.png";
+      break;
+    case "barcelona":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738657.png";
+      break;
+    case "ajax":
+      i = "https://assets-sports.thescore.com/soccer/team/269/logo.png";
+      break;
+    case "manchester_united":
+      i = "https://cdn-icons-png.flaticon.com/512/824/824727.png";
+      break;
+    case "inter_milan":
+      i =
+        "https://www.latingoles.com/wp-content/uploads/2020/06/FC-Internazionale.png";
+      break;
+    case "chelsea":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738656.png";
+      break;
+    case "nottingham_forest":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/english-football-club/256/Nottingham-Forest-icon.png";
+      break;
+    case "benfica":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/portugese-football-club/256/Benfica-icon.png";
+      break;
+    case "juventus":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738724.png";
+      break;
+    case "porto":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/portugese-football-club/256/FC-Porto-icon.png";
+      break;
+    case "dortmund":
+      i = "https://cdn-icons-png.flaticon.com/512/738/738654.png";
+      break;
+    case "feyenoord":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/dutch-football-club/256/Feyenoord-icon.png";
+      break;
+    case "marseille":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/french-football-club/256/Olumpique-de-Marseille-icon.png";
+      break;
+    case "aston_villa":
+      i = "http://acefootball.com/wp-content/uploads/ptl/team-10252-medium.png";
+      break;
+    case "hamburg":
+      i =
+        "https://images.fotmob.com/image_resources/logo/teamlogo/9790_large.png";
+      break;
+    case "crvena_zvezda":
+      i =
+        "https://b.thumbs.redditmedia.com/8MckLRmsgQkDwN-RuLED7qKngb5M-c-oy8eFbdN6s1g.png";
+      break;
+    case "fcsb":
+      i = "https://www.fifplay.com/img/fifa-mobile/20/clubs/100761.png";
+      break;
+    case "psv":
+      i =
+        "https://icons.iconarchive.com/icons/giannis-zographos/dutch-football-club/256/PSV-Eindhoven-icon.png";
+      break;
+    case "celtic":
+      i =
+        "https://styles.redditmedia.com/t5_2snki/styles/communityIcon_qm1c2cxv45ka1.png?width=256&s=44a25eabebb713f58925ed788fd8a6a914472783";
+      break;
+  }
+  return i;
+};
+
 export const sizes = {
   facil: { columns: 10, mines: 12 },
   medio: { columns: 15, mines: 40 },

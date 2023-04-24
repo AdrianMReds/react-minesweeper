@@ -1,7 +1,6 @@
 import React from "react";
 import "./btn.css";
 import { FaBomb, FaFlag } from "react-icons/fa";
-import { useState } from "react";
 import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -209,6 +208,7 @@ const Button = ({
             src={getIcon(numValues[bt.value].name)}
             width={btWidth - 10}
             height={btHeight - 10}
+            alt="football team logo"
           />
         ) : (
           bt.value

@@ -70,6 +70,7 @@ const Board = () => {
   useEffect(() => {
     setFlags(sizes[difficulty].mines);
     setNumberValues(setNumbers());
+    setLostGame(false);
   }, [difficulty]);
 
   const modifyFlags = (type) => {

@@ -45,6 +45,7 @@ elif(tableType==2):
                     line_count += 1
                 else:
                     teamName = row[1]
+                    teamName = teamName.replace(' ', '_').lower()
                     titles = row[3]
                     print('{} has {} Super Bowls'.format(row[1], row[3]))
                     if d.get(titles) is not None:
@@ -70,3 +71,7 @@ jsonFile = open("./jsons/"+table[:len(table)-4]+".json", "w")
 jsonFile.write(jsonstring)
 jsonFile.close()
 
+#Code to write javascript switch
+# for key in d:
+#     for item in d[key]:
+#         print("case: \""+item["name"]+"\":\ni=\"\";\nbreak;")

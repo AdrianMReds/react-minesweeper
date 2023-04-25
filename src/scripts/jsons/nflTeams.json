@@ -1,128 +1,128 @@
 {
   "6": [
     {
-      "name": "Pittsburgh Steelers",
-      "displayName": "PITTSBURGH STEELERS"
+      "name": "pittsburgh_steelers",
+      "displayName": "PITTSBURGH_STEELERS"
     },
     {
-      "name": "New England Patriots",
-      "displayName": "NEW ENGLAND PATRIOTS"
+      "name": "new_england_patriots",
+      "displayName": "NEW_ENGLAND_PATRIOTS"
     }
   ],
   "5": [
     {
-      "name": "San Francisco 49ers",
-      "displayName": "SAN FRANCISCO 49ERS"
+      "name": "san_francisco_49ers",
+      "displayName": "SAN_FRANCISCO_49ERS"
     },
     {
-      "name": "Dallas Cowboys",
-      "displayName": "DALLAS COWBOYS"
+      "name": "dallas_cowboys",
+      "displayName": "DALLAS_COWBOYS"
     }
   ],
   "4": [
     {
-      "name": "Green Bay Packers",
-      "displayName": "GREEN BAY PACKERS"
+      "name": "green_bay_packers",
+      "displayName": "GREEN_BAY_PACKERS"
     },
     {
-      "name": "New York Giants",
-      "displayName": "NEW YORK GIANTS"
+      "name": "new_york_giants",
+      "displayName": "NEW_YORK_GIANTS"
     }
   ],
   "3": [
     {
-      "name": "Oakland Raiders",
-      "displayName": "OAKLAND RAIDERS"
+      "name": "oakland_raiders",
+      "displayName": "OAKLAND_RAIDERS"
     },
     {
-      "name": "Washington Redskins",
-      "displayName": "WASHINGTON REDSKINS"
+      "name": "washington_redskins",
+      "displayName": "WASHINGTON_REDSKINS"
     },
     {
-      "name": "Denver Broncos",
-      "displayName": "DENVER BRONCOS"
+      "name": "denver_broncos",
+      "displayName": "DENVER_BRONCOS"
     },
     {
-      "name": "Kansas City Chiefs",
-      "displayName": "KANSAS CITY CHIEFS"
+      "name": "kansas_city_chiefs",
+      "displayName": "KANSAS_CITY_CHIEFS"
     }
   ],
   "2": [
     {
-      "name": "Baltimore Ravens",
-      "displayName": "BALTIMORE RAVENS"
+      "name": "baltimore_ravens",
+      "displayName": "BALTIMORE_RAVENS"
     },
     {
-      "name": "Tampa Bay Buccaneers",
-      "displayName": "TAMPA BAY BUCCANEERS"
+      "name": "tampa_bay_buccaneers",
+      "displayName": "TAMPA_BAY_BUCCANEERS"
     },
     {
-      "name": "Indianapolis Colts",
-      "displayName": "INDIANAPOLIS COLTS"
+      "name": "indianapolis_colts",
+      "displayName": "INDIANAPOLIS_COLTS"
     },
     {
-      "name": "Los Angeles Rams",
-      "displayName": "LOS ANGELES RAMS"
+      "name": "los_angeles_rams",
+      "displayName": "LOS_ANGELES_RAMS"
     },
     {
-      "name": "Miami Dolphins",
-      "displayName": "MIAMI DOLPHINS"
+      "name": "miami_dolphins",
+      "displayName": "MIAMI_DOLPHINS"
     }
   ],
   "1": [
     {
-      "name": "New Orleans Saints",
-      "displayName": "NEW ORLEANS SAINTS"
+      "name": "new_orleans_saints",
+      "displayName": "NEW_ORLEANS_SAINTS"
     },
     {
-      "name": "New York Jets",
-      "displayName": "NEW YORK JETS"
+      "name": "new_york_jets",
+      "displayName": "NEW_YORK_JETS"
     },
     {
-      "name": "Chicago Bears",
-      "displayName": "CHICAGO BEARS"
+      "name": "chicago_bears",
+      "displayName": "CHICAGO_BEARS"
     },
     {
-      "name": "Philadelphia Eagles",
-      "displayName": "PHILADELPHIA EAGLES"
+      "name": "philadelphia_eagles",
+      "displayName": "PHILADELPHIA_EAGLES"
     },
     {
-      "name": "Seattle Seahawks",
-      "displayName": "SEATTLE SEAHAWKS"
+      "name": "seattle_seahawks",
+      "displayName": "SEATTLE_SEAHAWKS"
     }
   ],
   "0": [
     {
-      "name": "Buffalo Bills",
-      "displayName": "BUFFALO BILLS"
+      "name": "buffalo_bills",
+      "displayName": "BUFFALO_BILLS"
     },
     {
-      "name": "Minnesota Vikings",
-      "displayName": "MINNESOTA VIKINGS"
+      "name": "minnesota_vikings",
+      "displayName": "MINNESOTA_VIKINGS"
     },
     {
-      "name": "Cincinnati Bengals",
-      "displayName": "CINCINNATI BENGALS"
+      "name": "cincinnati_bengals",
+      "displayName": "CINCINNATI_BENGALS"
     },
     {
-      "name": "Atlanta Falcons",
-      "displayName": "ATLANTA FALCONS"
+      "name": "atlanta_falcons",
+      "displayName": "ATLANTA_FALCONS"
     },
     {
-      "name": "Carolina Panthers",
-      "displayName": "CAROLINA PANTHERS"
+      "name": "carolina_panthers",
+      "displayName": "CAROLINA_PANTHERS"
     },
     {
-      "name": "Arizona Cardinals",
-      "displayName": "ARIZONA CARDINALS"
+      "name": "arizona_cardinals",
+      "displayName": "ARIZONA_CARDINALS"
     },
     {
-      "name": "Tennessee Titans",
-      "displayName": "TENNESSEE TITANS"
+      "name": "tennessee_titans",
+      "displayName": "TENNESSEE_TITANS"
     },
     {
-      "name": "Los Angeles Chargers",
-      "displayName": "LOS ANGELES CHARGERS"
+      "name": "los_angeles_chargers",
+      "displayName": "LOS_ANGELES_CHARGERS"
     }
   ]
 }

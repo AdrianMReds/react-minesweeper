@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import ButtonGrid from "../button-grid";
-import { FaFlag } from "react-icons/fa";
+import { FaFlag, FaFootballBall, FaFutbol } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { updateBoard } from "../../Features/board";
@@ -8,51 +8,65 @@ import generateBoard from "../helper";
 import { sizes } from "../helper";
 import clubs_players from "../../clubs-players";
 
-const setNumbers = () => {
+const setNumbers = (comp) => {
+  console.log(comp);
   const nv = {
-    1:
-      clubs_players.clubs["1"].length > 1
-        ? clubs_players.clubs["1"][
-            Math.floor(Math.random() * clubs_players.clubs["1"].length)
+    1: clubs_players.clubs[comp]["1"]
+      ? clubs_players.clubs[comp]["1"].length > 1
+        ? clubs_players.clubs[comp]["1"][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["1"].length)
           ]
-        : clubs_players.clubs[1][0],
-    2:
-      clubs_players.clubs["2"].length > 1
-        ? clubs_players.clubs[2][
-            Math.floor(Math.random() * clubs_players.clubs["2"].length)
+        : clubs_players.clubs[comp][1][0]
+      : null,
+    2: clubs_players.clubs[comp]["2"]
+      ? clubs_players.clubs[comp]["2"].length > 1
+        ? clubs_players.clubs[comp][2][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["2"].length)
           ]
-        : clubs_players.clubs[2][0],
-    3:
-      clubs_players.clubs["3"].length > 1
-        ? clubs_players.clubs[3][
-            Math.floor(Math.random() * clubs_players.clubs["3"].length)
+        : clubs_players.clubs[comp][2][0]
+      : null,
+    3: clubs_players.clubs[comp]["3"]
+      ? clubs_players.clubs[comp]["3"].length > 1
+        ? clubs_players.clubs[comp][3][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["3"].length)
           ]
-        : clubs_players.clubs[3][0],
-    4:
-      clubs_players.clubs["4"].length > 1
-        ? clubs_players.clubs[4][
-            Math.floor(Math.random() * clubs_players.clubs["4"].length)
+        : clubs_players.clubs[comp][3][0]
+      : null,
+    4: clubs_players.clubs[comp]["4"]
+      ? clubs_players.clubs[comp]["4"].length > 1
+        ? clubs_players.clubs[comp][4][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["4"].length)
           ]
-        : clubs_players.clubs[4][0],
-    5:
-      clubs_players.clubs["5"].length > 1
-        ? clubs_players.clubs[5][
-            Math.floor(Math.random() * clubs_players.clubs["5"].length)
+        : clubs_players.clubs[comp][4][0]
+      : null,
+    5: clubs_players.clubs[comp]["5"]
+      ? clubs_players.clubs[comp]["5"].length > 1
+        ? clubs_players.clubs[comp][5][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["5"].length)
           ]
-        : clubs_players.clubs[5][0],
-    6:
-      clubs_players.clubs["6"].length > 1
-        ? clubs_players.clubs[6][
-            Math.floor(Math.random() * clubs_players.clubs["6"].length)
+        : clubs_players.clubs[comp][5][0]
+      : null,
+    6: clubs_players.clubs[comp]["6"]
+      ? clubs_players.clubs[comp]["6"].length > 1
+        ? clubs_players.clubs[comp][6][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["6"].length)
           ]
-        : clubs_players.clubs[6][0],
-    7:
-      clubs_players.clubs["7"].length > 1
-        ? clubs_players.clubs[7][
-            Math.floor(Math.random() * clubs_players.clubs["7"].length)
+        : clubs_players.clubs[comp][6][0]
+      : null,
+    7: clubs_players.clubs[comp]["7"]
+      ? clubs_players.clubs[comp]["7"].length > 1
+        ? clubs_players.clubs[comp][7][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["7"].length)
           ]
-        : clubs_players.clubs[7][0],
-    8: null,
+        : clubs_players.clubs[comp][7][0]
+      : null,
+    8: clubs_players.clubs[comp]["8"]
+      ? clubs_players.clubs[comp]["8"].length > 1
+        ? clubs_players.clubs[comp][8][
+            Math.floor(Math.random() * clubs_players.clubs[comp]["8"].length)
+          ]
+        : clubs_players.clubs[comp][8][0]
+      : null,
   };
   return nv;
 };
@@ -60,18 +74,19 @@ const setNumbers = () => {
 const Board = () => {
   const board = useSelector((state) => state.board.value.board);
   const difficulty = useSelector((state) => state.board.value.difficulty);
+  const competition = useSelector((state) => state.board.value.competition);
   const [flags, setFlags] = useState(10);
   const [lostGame, setLostGame] = useState(false);
   const [wonGame, setWonGame] = useState(false);
-  const [numberValues, setNumberValues] = useState(setNumbers());
+  const [numberValues, setNumberValues] = useState(setNumbers(competition));
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     setFlags(sizes[difficulty].mines);
-    setNumberValues(setNumbers());
+    setNumberValues(setNumbers(competition));
     setLostGame(false);
-  }, [difficulty]);
+  }, [difficulty, competition]);
 
   const modifyFlags = (type) => {
     setFlags((prevFlags) =>
@@ -84,7 +99,12 @@ const Board = () => {
       {!lostGame && !wonGame ? (
         <div style={{ textAlign: "-webkit-center" }}>
           <h2>
-            <FaFlag /> Flags: {flags}
+            {competition === "champions_league" ? (
+              <FaFutbol />
+            ) : (
+              <FaFootballBall />
+            )}{" "}
+            Flags: {flags}
           </h2>
           <ButtonGrid
             board={board}
@@ -99,7 +119,7 @@ const Board = () => {
           <button
             onClick={() => {
               dispatch(updateBoard(generateBoard(difficulty)));
-              setNumberValues(setNumbers());
+              setNumberValues(setNumbers(competition));
               setLostGame(false);
               setWonGame(false);
               setFlags(sizes[difficulty].mines);
@@ -126,6 +146,7 @@ const Board = () => {
               setLostGame(false);
               setWonGame(false);
               setFlags(sizes[difficulty].mines);
+              setNumberValues(setNumbers(competition));
             }}
           >
             New Game

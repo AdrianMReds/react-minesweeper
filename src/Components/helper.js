@@ -74,6 +74,70 @@ export const getIcon = (name) => {
       i =
         "https://styles.redditmedia.com/t5_2snki/styles/communityIcon_qm1c2cxv45ka1.png?width=256&s=44a25eabebb713f58925ed788fd8a6a914472783";
       break;
+
+    //NFL
+    case "pittsburgh_steelers":
+      i = "https://assets-sports.thescore.com/football/team/11/logo.png";
+      break;
+    case "new_england_patriots":
+      i = "https://assets-sports.thescore.com/football/team/3/logo.png";
+      break;
+    case "san_francisco_49ers":
+      i = "https://assets-sports.thescore.com/football/team/23/logo.png";
+      break;
+    case "dallas_cowboys":
+      i = "https://assets-sports.thescore.com/football/team/17/logo.png";
+      break;
+    case "green_bay_packers":
+      i = "https://assets-sports.thescore.com/football/team/27/logo.png";
+      break;
+    case "new_york_giants":
+      i = "https://assets-sports.thescore.com/football/team/18/logo.png";
+      break;
+    case "las_vegas_raiders":
+      i = "https://assets-sports.thescore.com/football/team/7/logo.png";
+      break;
+    case "washington_commanders":
+      i = "https://static.www.nfl.com/t_q-best/league/api/clubs/logos/WAS";
+      break;
+    case "denver_broncos":
+      i = "https://assets-sports.thescore.com/football/team/5/logo.png";
+      break;
+    case "kansas_city_chiefs":
+      i = "https://assets-sports.thescore.com/football/team/6/logo.png";
+      break;
+    case "baltimore_ravens":
+      i = "https://a.espncdn.com/combiner/i?img=/i/teamlogos/nfl/500/bal.png";
+      break;
+    case "tampa_bay_buccaneers":
+      i = "https://cdn.iconscout.com/icon/free/png-256/tampa-1-285319.png";
+      break;
+    case "indianapolis_colts":
+      i = "https://assets-sports.thescore.com/football/team/15/logo.png";
+      break;
+    case "los_angeles_rams":
+      i = "https://mymadden.com/storage/teamlogos/256/23.png";
+      break;
+    case "miami_dolphins":
+      i =
+        "https://teamwork-online-production.s3.amazonaws.com/uploads/thumb_64c1183a-fa3c-4d91-9e2e-d580866f4e6c.png";
+      break;
+    case "new_orleans_saints":
+      i = "https://assets-sports.thescore.com/football/team/30/logo.png";
+      break;
+    case "new_york_jets":
+      i =
+        "https://teamwork-online-production.s3.amazonaws.com/uploads/thumb_d76832a2-57f8-4e75-b94a-d32f4af90d87.png";
+      break;
+    case "chicago_bears":
+      i = "https://assets-sports.thescore.com/football/team/25/logo.png";
+      break;
+    case "philadelphia_eagles":
+      i = "https://assets-sports.thescore.com/football/team/19/logo.png";
+      break;
+    case "seattle_seahawks":
+      i = "https://assets-sports.thescore.com/football/team/24/logo.png";
+      break;
   }
   return i;
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import "./btn.css";
-import { FaBomb, FaFlag } from "react-icons/fa";
+import { FaBomb, FaFlag, FaFootballBall, FaFutbol } from "react-icons/fa";
 import { updateBoard } from "../../Features/board";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -16,6 +16,7 @@ const Button = ({
   numValues,
 }) => {
   const board = useSelector((state) => state.board.value.board);
+  const competition = useSelector((state) => state.board.value.competition);
   let bx = bt.coords.x;
   let by = bt.coords.y;
   let stat = board[bx][by].status;
@@ -199,7 +200,12 @@ const Button = ({
       {stat === "b" ? (
         "."
       ) : stat === "f" ? (
-        <FaFlag />
+        competition === "champions_league" ? (
+          <FaFutbol />
+        ) : (
+          // <FaFlag />
+          <FaFootballBall />
+        )
       ) : bt.value === 9 ? (
         <FaBomb color="black" />
       ) : bt.value !== 0 ? (

@@ -152,7 +152,7 @@ const Board = () => {
             New Game
           </button>
           <div style={{ pointerEvents: "none" }}>
-            <h1>GANASTE</h1>
+            <h1>YOU WON</h1>
             <ButtonGrid
               board={board}
               modFlags={modifyFlags}

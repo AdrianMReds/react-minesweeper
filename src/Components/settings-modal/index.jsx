@@ -41,7 +41,7 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
       open={modalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
-      bodyStyle={{ height: 400 }}
+      bodyStyle={{ height: 350 }}
     >
       <div>
         <div style={{ alignContent: "center" }}>
@@ -60,7 +60,7 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
                 setTempDiff("facil");
               }}
             >
-              Fácil
+              Easy
             </Button>
             <Button
               style={{ margin: 10 }}
@@ -69,7 +69,7 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
                 setTempDiff("medio");
               }}
             >
-              Medio
+              Intermediate
             </Button>
             <Button
               style={{ margin: 10 }}
@@ -78,16 +78,10 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
                 setTempDiff("dificil");
               }}
             >
-              Díficil
+              Hard
             </Button>
           </div>
         </div>
-        <p style={{ marginTop: 70, fontSize: 10, textAlign: "center" }}>
-          <b style={{ color: "red" }}>* </b>
-          If you change the difficulty in the middle of a game it will
-          automatically restart
-          <b style={{ color: "red" }}> *</b>
-        </p>
       </div>
       <div style={{ alignContent: "center" }}>
         <h1 style={{ textAlign: "center" }}>Competition</h1>
@@ -117,6 +111,12 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
             NFL
           </Button>
         </div>
+        <p style={{ marginTop: 70, fontSize: 10, textAlign: "center" }}>
+          <b style={{ color: "red" }}>* </b>
+          If you change the settings in the middle of a game it will
+          automatically restart
+          <b style={{ color: "red" }}> *</b>
+        </p>
       </div>
     </Modal>
   );

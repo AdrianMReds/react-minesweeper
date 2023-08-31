@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonGrid from "../button-grid";
 import { FaFlag, FaFootballBall, FaFutbol } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -97,14 +97,15 @@ const Board = () => {
   return (
     <div>
       {!lostGame && !wonGame ? (
-        <div style={{ textAlign: "-webkit-center" }}>
+        <div style={{ textAlign: "-webkit-center", overflow: "hidden" }}>
           <h2>
-            {competition === "champions_league" ? (
+            {/* Descomentar esto para cambiar el ícono de las banderas */}
+            {/* {competition === "champions_league" ? (
               <FaFutbol />
             ) : (
               <FaFootballBall />
-            )}{" "}
-            Flags: {flags}
+            )}{" "} */}
+            <FaFlag /> Flags: {flags}
           </h2>
           <ButtonGrid
             board={board}

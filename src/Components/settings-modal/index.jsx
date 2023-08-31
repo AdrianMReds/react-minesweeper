@@ -41,7 +41,7 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
       open={modalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
-      bodyStyle={{ height: 350 }}
+      bodyStyle={{ height: 250 }}
     >
       <div>
         <div style={{ alignContent: "center" }}>
@@ -82,8 +82,14 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
             </Button>
           </div>
         </div>
+        <p style={{ marginTop: 70, fontSize: 15, textAlign: "center" }}>
+          <b style={{ color: "red" }}>* </b>
+          If you change the settings in the middle of a game it will
+          automatically restart
+          <b style={{ color: "red" }}> *</b>
+        </p>
       </div>
-      <div style={{ alignContent: "center" }}>
+      {/* <div style={{ alignContent: "center" }}>
         <h1 style={{ textAlign: "center" }}>Competition</h1>
         <div
           style={{
@@ -111,13 +117,8 @@ const SettingsModal = ({ modalOpen, setModalOpen }) => {
             NFL
           </Button>
         </div>
-        <p style={{ marginTop: 70, fontSize: 10, textAlign: "center" }}>
-          <b style={{ color: "red" }}>* </b>
-          If you change the settings in the middle of a game it will
-          automatically restart
-          <b style={{ color: "red" }}> *</b>
-        </p>
-      </div>
+        
+      </div> */}
     </Modal>
   );
 };

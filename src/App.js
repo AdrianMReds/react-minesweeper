@@ -19,13 +19,13 @@ const App = () => {
         style={{ position: "absolute", top: 0, right: 0, margin: 20 }}
         onClick={() => setSettingsModalOpen(true)}
       />
-      <Button
+      {/* <Button
         icon={<InfoCircleOutlined />}
         shape="circle"
         size="large"
         style={{ position: "absolute", top: 0, left: 0, margin: 20 }}
         onClick={() => setInfoModalOpen(true)}
-      />
+      /> */}
       <Board />
       <SettingsModal
         modalOpen={settingsModalOpen}
@@ -35,7 +35,7 @@ const App = () => {
       <footer>
         This game was developed by{" "}
         <a
-          href="https://github.com/AdrianMReds"
+          href="https://adrianmreds.vercel.app/"
           style={{ textDecoration: "none" }}
           target="_blank"
         >

@@ -193,33 +193,41 @@ const Button = ({
         height: btHeight,
         alignItems: "center",
       }}
-      title={
-        bt.status === "u" ? numValues?.[bt.value]?.["displayName"] : undefined
-      }
+      //The name of the team used to be the button's
+      // title={
+      //   bt.status === "u" ? numValues?.[bt.value]?.["displayName"] : undefined
+      // }
     >
       {stat === "b" ? (
-        "."
+        " "
       ) : stat === "f" ? (
-        competition === "champions_league" ? (
-          <FaFutbol />
-        ) : (
-          // <FaFlag />
-          <FaFootballBall />
-        )
+        // Descomentar esto para regresar al modo futbol
+        // competition === "champions_league" ? (
+        //   <FaFutbol />
+        // ) : (
+        //   // <FaFlag />
+        //   <FaFootballBall />
+        // )
+        <FaFlag />
       ) : bt.value === 9 ? (
         <FaBomb color="black" />
       ) : bt.value !== 0 ? (
-        numValues[bt.value] !== null ? (
-          <img
-            src={getIcon(numValues[bt.value].name)}
-            width={btWidth - 10}
-            height={btHeight - 10}
-            alt="football team logo"
-          />
-        ) : (
-          bt.value
-        )
+        bt.value
       ) : (
+        //Descomentar esto para que se vean los logos de los equipos
+        //Hay algunos que ya no se ven porque vienen de un link externo
+        // (
+        //   numValues[bt.value] !== null ? (
+        //     <img
+        //       src={getIcon(numValues[bt.value].name)}
+        //       width={btWidth - 10}
+        //       height={btHeight - 10}
+        //       alt="football team logo"
+        //     />
+        //   ) : (
+        //     bt.value
+        //   )
+        // )
         "."
       )}
     </button>

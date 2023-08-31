@@ -8,8 +8,8 @@ const ButtonGrid = ({ board, modFlags, setLost, setWon, numValues }) => {
 
   const style = {
     backgroundColor: "lightgray",
-    width: 600,
-    height: 600,
+    width: 520,
+    height: 520,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
